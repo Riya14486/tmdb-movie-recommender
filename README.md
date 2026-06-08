@@ -2,6 +2,8 @@
 
 A Streamlit movie recommender app using TMDB data.
 
+APP url : https://tmdb-movie-recommender-ljchb9w4b25pskkqnza3zl.streamlit.app/
+
 ## Setup
 
 1. Create and activate your virtual environment.
@@ -43,3 +45,5 @@ TMDB_API_KEY = "your_tmdb_api_key_here"
 - The app already reads `TMDB_API_KEY` from `st.secrets` or from the `TMDB_API_KEY` environment variable.
 - Do not commit `.streamlit/secrets.toml` to GitHub.
 - The `.streamlit/` folder is already ignored by `.gitignore`.
+
+
