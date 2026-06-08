@@ -5,5 +5,5 @@ __pycache__/
 *.pkl
 model/
 *.egg-info/
-.streamlit/
+.streamlit/secrets.toml
 .DS_Store
