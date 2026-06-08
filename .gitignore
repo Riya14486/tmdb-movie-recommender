@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+model/
+*.egg-info/
+.streamlit/
+.DS_Store
