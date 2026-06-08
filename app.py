@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import requests
 import pandas as pd
@@ -62,10 +63,23 @@ def load_data():
     return new_df[['movie_id','title']], similarity_matrix
 
 def fetch_poster(movie_id):
-    url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
-    data = requests.get(url)
-    data = data.json()
-    poster_path = data['poster_path']
+    # Read API key from Streamlit secrets or environment variable
+    api_key = None
+    try:
+        api_key = st.secrets.get("TMDB_API_KEY")
+    except Exception:
+        api_key = None
+    if not api_key:
+        api_key = os.environ.get("TMDB_API_KEY")
+    if not api_key:
+        # No API key available — return empty string so UI can handle missing poster
+        return ""
+
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
+    data = requests.get(url).json()
+    poster_path = data.get('poster_path')
+    if not poster_path:
+        return ""
     full_path = "https://image.tmdb.org/t/p/w500/" + poster_path
     return full_path
 
